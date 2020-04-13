@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="controlecontextModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'controlecontext.dbo.Produtos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Produtos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Produto" Type="varchar(max)" />
+    <Property Name="Quantidade" Type="int" />
+    <Property Name="Vendedor" Type="varchar(max)" />
+    <Property Name="Valor" Type="varchar(max)" />
+  </EntityType>
+  <EntityContainer Name="controlecontextModelStoreContainer">
+    <EntitySet Name="Produtos" EntityType="Self.Produtos" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Produtos].[Id] AS [Id], 
+    [Produtos].[Produto] AS [Produto], 
+    [Produtos].[Quantidade] AS [Quantidade], 
+    [Produtos].[Vendedor] AS [Vendedor], 
+    [Produtos].[Valor] AS [Valor]
+    FROM [dbo].[Produtos] AS [Produtos]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

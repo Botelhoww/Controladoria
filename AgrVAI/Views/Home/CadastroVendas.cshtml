@@ -1,0 +1,194 @@
+﻿@model AgrVAI.Models.abcViewModel
+
+@{
+    ViewBag.Title = "Cadastro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <head>
+        <meta charset="utf-8" />
+        <link rel="apple-touch-icon" sizes="76x76" href="~/Content/assets/img/apple-icon.png">
+        <link rel="icon" type="image/png" href="~/Content/assets/img/favicon.png">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+        <!--     Fonts and icons     -->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <!-- Nucleo Icons -->
+        <link href="~/Content/assets/css/nucleo-icons.css" rel="stylesheet" />
+        <!-- CSS Files -->
+        <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/Content/assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+
+        <link href="~/Content/assets/js/jquery.mask.js" rel="stylesheet" />
+        <link href="~/Content/assets/js/jquery.mask.min.js" rel="stylesheet" />
+        <link href="~/Content/assets/js/_jquery-3.2.1.min.js" rel="stylesheet" />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+    </head>
+
+<body>
+    <div class="wrapper ">
+        <div class="sidebar">
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="#" class="simple-text logo-mini">
+                        NB
+                    </a>
+                    <a href="#" class="simple-text logo-normal">
+                        Nane 
+                    </a>
+                </div>
+                <ul class="nav">
+                    <li>
+                        <a href="/Home/Index">
+                            <i class="fas fa-chart-line"></i>
+                            <p>Gráfico</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("ListaVendas", "Home")">
+                            <i class="fas fa-list-ul"></i>
+                            <p>Registro de Vendas</p>
+                        </a>
+                    </li>
+
+                    <li class="active">
+                        <a href="@Url.Action("CadastroVendas", "Home")">
+                            <i class="fas fa-shopping-cart"></i>
+                            <p>Registrar Venda</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent   ">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <div class="navbar-toggle d-inline">
+                            <button type="button" class="navbar-toggler">
+                                <span class="navbar-toggler-bar bar1"></span>
+                                <span class="navbar-toggler-bar bar2"></span>
+                                <span class="navbar-toggler-bar bar3"></span>
+                            </button>
+                        </div>
+                        <a class="navbar-brand" href="/Home/Index">Dashboard</a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-bar navbar-kebab"></span>
+                        <span class="navbar-toggler-bar navbar-kebab"></span>
+                        <span class="navbar-toggler-bar navbar-kebab"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto ">
+                            @*<div class="search-bar input-group">
+                                <input type="text" class="form-control" placeholder="Procure...">
+                                <div class="input-group-addon"><i class="tim-icons icon-zoom-split"></i></div>
+                            </div>*@
+                            <li class="dropdown nav-item">
+                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                    <div class="photo">
+                                        <img src="~/Content/assets/img/anime6.png">
+                                    </div>
+                                    <p class="d-lg-none">
+                                        Log out
+                                    </p>
+                                </a>
+                                <ul class="dropdown-menu dropdown-navbar">
+
+                                    <li class="nav-link">
+                                        <a href="#" class="nav-item dropdown-item">Log out</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="separator d-lg-none"></li>
+                        </ul>
+
+                    </div>
+
+                </div>
+            </nav>
+
+            <!-- End Navbar -->
+            <div class="content">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto, htmlAttributes: new { @class = "Cadastro col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Produto, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Produto, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Quantidade, htmlAttributes: new { @class = "Cadastro col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Quantidade, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Quantidade, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Valor, htmlAttributes: new { @class = "Cadastro col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Vendedor, htmlAttributes: new { @class = "Cadastro col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Vendedor, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Vendedor, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Registrar" id="bttn" class="btn btn-outline-success" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }
+        </div>
+    </div>
+
+</body>
+
+<script>
+    function desBotao() {
+
+        var inputs = $('input').on('keyup', verificarInputs);
+        function verificarInputs() {
+            const preenchidos = inputs.get().every(({ value }) => value)
+            $('button').prop('disabled', !preenchidos);
+        }
+    }
+
+    $(function () {
+        $("#Valor").maskMoney({
+            prefix: 'R$ ',
+            allowNegative: true,
+            thousands: '.',
+            decimal: ','
+        });
+    });
+
+</script>
